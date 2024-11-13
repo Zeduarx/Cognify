@@ -1,0 +1,66 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cognify - Contacto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Encabezado -->
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Cognify</h1>
+                    <p class="text-sm text-gray-600">Transformando la rehabilitación criminal</p>
+                </div>
+                <nav>
+                    <a href="index.html" class="text-gray-600 hover:text-blue-500 mx-2">Inicio</a>
+                    <a href="about.html" class="text-gray-600 hover:text-blue-500 mx-2">Acerca de</a>
+                    <a href="process_info.html" class="text-gray-600 hover:text-blue-500 mx-2">Cómo Funciona</a>
+                    <a href="additional_applications.html" class="text-gray-600 hover:text-blue-500 mx-2">Aplicaciones</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-blue-500 mx-2">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold mb-6">Contáctanos</h2>
+        <p class="mb-4">
+            Si tienes preguntas o necesitas más información sobre Cognify, por favor completa el siguiente formulario y nos pondremos en contacto contigo a la brevedad.
+        </p>
+        <form action="send_message" method="post" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" name="name" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <input type="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Mensaje</label>
+                <textarea name="message" rows="5" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+            </div>
+            <div class="text-right">
+                <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Enviar Mensaje
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p class="text-white">&copy; 2023 Cognify. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+</body>
+</html>

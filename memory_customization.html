@@ -1,0 +1,76 @@
+<!-- memory_customization.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cognify - Personalización de Recuerdos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Incluir Axios si es necesario -->
+</head>
+<body class="bg-gray-100">
+
+    <!-- Obtener los parámetros de la URL -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const crimeType = urlParams.get('crime_type');
+    </script>
+
+    <div class="container mx-auto p-8">
+        <h2 class="text-2xl font-bold mb-4">Personalice sus Recuerdos</h2>
+        <p class="mb-4">
+            <strong>Nombre:</strong> <span id="displayName"></span><br>
+            <strong>Edad:</strong> <span id="displayAge"></span><br>
+            <strong>Tipo de Crimen:</strong> <span id="displayCrimeType"></span>
+        </p>
+
+        <form action="/simulation.html" method="get" class="space-y-4">
+            <!-- Pasar los datos anteriores -->
+            <input type="hidden" name="name" value="">
+            <input type="hidden" name="age" value="">
+            <input type="hidden" name="crime_type" value="">
+
+            <!-- Opciones de personalización (igual que antes) -->
+
+            <!-- ... código existente para opciones de personalización ... -->
+
+            <div class="text-right">
+                <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Iniciar Simulación
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Script para mostrar los datos y manejar las opciones -->
+    <script>
+        // Mostrar los datos del delincuente
+        document.getElementById('displayName').textContent = name;
+        document.getElementById('displayAge').textContent = age;
+        const crimeTypeDisplay = {
+            'violent': 'Delito Violento',
+            'financial': 'Crimen Financiero',
+            'hate': 'Crimen de Odio'
+        };
+        document.getElementById('displayCrimeType').textContent = crimeTypeDisplay[crimeType];
+
+        // Rellenar los campos ocultos en el formulario
+        document.querySelector('input[name="name"]').value = name;
+        document.querySelector('input[name="age"]').value = age;
+        document.querySelector('input[name="crime_type"]').value = crimeType;
+
+        // Mostrar las opciones de personalización según el tipo de crimen
+        document.addEventListener('DOMContentLoaded', function() {
+            if (crimeType === 'violent') {
+                document.getElementById('violent-options').classList.remove('hidden');
+            } else if (crimeType === 'financial') {
+                document.getElementById('financial-options').classList.remove('hidden');
+            } else if (crimeType === 'hate') {
+                document.getElementById('hate-options').classList.remove('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>

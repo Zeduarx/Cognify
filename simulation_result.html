@@ -1,0 +1,87 @@
+<!-- simulation_result.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cognify - Resultados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Obtener los parámetros de la URL -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const crimeType = urlParams.get('crime_type');
+        // Obtener los parámetros de personalización
+        const empathyLevel = urlParams.get('empathy_level');
+        const lossAmount = urlParams.get('loss_amount');
+        const diversityLevel = urlParams.get('diversity_level');
+    </script>
+
+    <div class="container mx-auto p-8">
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-2xl font-bold mb-4">Simulación Completa</h2>
+            <p class="mb-4">
+                <strong>Nombre:</strong> <span id="displayName"></span><br>
+                <strong>Edad:</strong> <span id="displayAge"></span><br>
+                <strong>Tipo de Crimen:</strong> <span id="displayCrimeType"></span>
+            </p>
+            <p class="mb-4">
+                Ha experimentado años de recuerdos artificiales en solo unos minutos.
+            </p>
+            <!-- Mostrar detalles de personalización -->
+            <div id="violent-result" class="hidden mb-4">
+                <p><strong>Intensidad de Empatía:</strong> Nivel <span id="displayEmpathyLevel"></span></p>
+            </div>
+            <div id="financial-result" class="hidden mb-4">
+                <p><strong>Monto Simulado de Pérdidas:</strong> $<span id="displayLossAmount"></span></p>
+            </div>
+            <div id="hate-result" class="hidden mb-4">
+                <p><strong>Nivel de Diversidad Experimentado:</strong> <span id="displayDiversityLevel"></span></p>
+            </div>
+
+            <p class="mb-4">
+                Está listo para reintegrarse a la sociedad y comenzar una nueva vida alejado del crimen.
+            </p>
+            <div class="text-right">
+                <a href="/family_info.html" class="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600">
+                    Continuar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para mostrar los datos -->
+    <script>
+        // Mostrar datos del delincuente
+        document.getElementById('displayName').textContent = name;
+        document.getElementById('displayAge').textContent = age;
+        const crimeTypeDisplay = {
+            'violent': 'Delito Violento',
+            'financial': 'Crimen Financiero',
+            'hate': 'Crimen de Odio'
+        };
+        document.getElementById('displayCrimeType').textContent = crimeTypeDisplay[crimeType];
+
+        // Mostrar detalles de personalización
+        if (crimeType === 'violent') {
+            document.getElementById('violent-result').classList.remove('hidden');
+            document.getElementById('displayEmpathyLevel').textContent = empathyLevel;
+        } else if (crimeType === 'financial') {
+            document.getElementById('financial-result').classList.remove('hidden');
+            document.getElementById('displayLossAmount').textContent = lossAmount;
+        } else if (crimeType === 'hate') {
+            document.getElementById('hate-result').classList.remove('hidden');
+            const diversityLevelDisplay = {
+                'low': 'Bajo',
+                'medium': 'Medio',
+                'high': 'Alto'
+            };
+            document.getElementById('displayDiversityLevel').textContent = diversityLevelDisplay[diversityLevel];
+        }
+    </script>
+
+</body>
+</html>

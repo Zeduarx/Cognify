@@ -1,0 +1,71 @@
+<!-- criminal_form.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cognify - Datos del Delincuente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Incluir Axios para solicitudes HTTP si es necesario -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-8">
+        <h2 class="text-2xl font-bold mb-6">Ingrese sus Datos</h2>
+
+        <button id="loadRandomUser" class="mb-4 py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600">
+            Cargar Datos Aleatorios
+        </button>
+
+        <!-- Ajustamos el formulario para que envíe al usuario a registration_success.html -->
+        <form action="registration_success.html" method="get" class="space-y-4">
+            <input type="hidden" name="method" value="rehabilitation">
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" name="name" id="name" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Edad</label>
+                <input type="number" name="age" id="age" min="1" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Tipo de Crimen</label>
+                <select name="crime_type" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                    <option value="" disabled selected>Seleccione un tipo de crimen</option>
+                    <option value="violent">Delito Violento</option>
+                    <option value="financial">Crimen Financiero</option>
+                    <option value="hate">Crimen de Odio</option>
+                </select>
+            </div>
+
+            <div class="text-right">
+                <!-- El botón de envío ahora redirige a registration_success.html -->
+                <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Continuar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Script para integrar la API de RandomUser -->
+    <script>
+        document.getElementById('loadRandomUser').addEventListener('click', function(event) {
+            event.preventDefault();
+            axios.get('https://randomuser.me/api/?nat=es')
+                .then(function (response) {
+                    const user = response.data.results[0];
+                    document.getElementById('name').value = `${user.name.first} ${user.name.last}`;
+                    const age = user.dob.age;
+                    document.getElementById('age').value = age;
+                })
+                .catch(function (error) {
+                    console.error('Error al cargar datos:', error);
+                });
+        });
+    </script>
+
+</body>
+</html>
